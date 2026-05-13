@@ -971,3 +971,19 @@ footer{background:#0f0805 !important;color:#d4a574 !important;}
   setTimeout(setHero,600);
 })();
 </script>
+<script>
+(()=>{
+  const HAWAII='https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?w=1920&q=85&auto=format&fit=crop';
+  function applyAll(){
+    const url=`url('${HAWAII}')`;
+    document.querySelectorAll('img').forEach(img=>{img.src=HAWAII;img.srcset='';});
+    const hero=document.querySelector('.hero')||document.querySelector('section');
+    if(hero){hero.style.background=`linear-gradient(rgba(26,15,8,.45),rgba(26,15,8,.75)), ${url} center/cover no-repeat`;}
+    document.querySelectorAll('.hero-panel-img, .hero-img, [class*="hero"] [class*="img"]').forEach(el=>{
+      el.style.backgroundImage=url;el.style.backgroundSize='cover';el.style.backgroundPosition='center';
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',applyAll);else applyAll();
+  setTimeout(applyAll,700);setTimeout(applyAll,1800);
+})();
+</script>
