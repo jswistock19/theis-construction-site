@@ -987,3 +987,22 @@ footer{background:#0f0805 !important;color:#d4a574 !important;}
   setTimeout(applyAll,700);setTimeout(applyAll,1800);
 })();
 </script>
+<script>
+(()=>{
+  const ORIG='https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/c4e358b2-e106-445a-a2ab-1057ec4c6328.png';
+  function apply(){
+    document.querySelectorAll('img').forEach(img=>{
+      const a=(img.alt||'').toLowerCase();
+      if(a.includes('community')||a.includes('weatherproof')||a.includes('tekton panel')||a.includes('panel system')||a.includes('hero')||a.includes('neighborhood')||a.includes('home')){
+        img.src=ORIG;img.srcset='';
+      }
+    });
+    const hero=document.querySelector('.hero')||document.querySelector('section');
+    if(hero){hero.style.background=`linear-gradient(rgba(26,15,8,.35),rgba(26,15,8,.7)), url('${ORIG}') center/cover no-repeat`;}
+    const heroBg=document.querySelector('.hero__bg img, .hero-bg img');
+    if(heroBg){heroBg.src=ORIG;}
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',apply);else apply();
+  setTimeout(apply,600);setTimeout(apply,1800);
+})();
+</script>
