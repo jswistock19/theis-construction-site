@@ -925,3 +925,49 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
   setTimeout(()=>{applyHero();applyStartup();},800);
 })();
 </script>
+<style id="theme-override">
+:root, [data-theme="dark"], [data-theme="light"] {
+  --color-bg:#1a0f08 !important;
+  --color-surface:#241509 !important;
+  --color-surface-2:#2e1c0d !important;
+  --color-surface-offset:#3a2412 !important;
+  --color-border:#5a3a1f !important;
+  --color-divider:#4a2f18 !important;
+  --color-text:#f5e6d3 !important;
+  --color-text-muted:#d4a574 !important;
+  --color-text-faint:#a07848 !important;
+  --color-primary:#e8842a !important;
+  --color-primary-hover:#ff9a3d !important;
+  --color-primary-highlight:#3a2412 !important;
+  --color-accent:#c87941 !important;
+}
+body{background:#1a0f08 !important;color:#f5e6d3 !important;}
+h1,h2,h3,h4{color:#f5e6d3 !important;}
+h1 em, h1 i, h1 span.accent, .accent{color:#e8842a !important;}
+a{color:#ff9a3d !important;}
+button, .btn, .button, [class*="btn-"]{background:#e8842a !important;color:#1a0f08 !important;border-color:#e8842a !important;}
+button:hover, .btn:hover{background:#ff9a3d !important;}
+.btn-secondary, .btn-outline, button.outline{background:transparent !important;color:#e8842a !important;border:1px solid #e8842a !important;}
+header, nav, .nav, .navbar, .site-header{background:rgba(26,15,8,.92) !important;border-color:#5a3a1f !important;backdrop-filter:blur(10px);}
+.card, section > div, .panel, [class*="card"]{background:#241509 !important;border-color:#5a3a1f !important;}
+footer{background:#0f0805 !important;color:#d4a574 !important;}
+.hero, section:first-of-type{background:linear-gradient(rgba(26,15,8,.55),rgba(26,15,8,.85)), url('https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1920&q=80&auto=format&fit=crop') center/cover no-repeat !important;}
+</style>
+<script>
+(()=>{
+  const HERO='https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=1920&q=80&auto=format&fit=crop';
+  function setHero(){
+    document.body.style.background='#1a0f08';
+    const hero=document.querySelector('.hero')||document.querySelector('section');
+    if(hero){hero.style.background=`linear-gradient(rgba(26,15,8,.55),rgba(26,15,8,.85)), url('${HERO}') center/cover no-repeat`;}
+    document.querySelectorAll('img').forEach(img=>{
+      const a=(img.alt||'').toLowerCase();
+      if(a.includes('tekton')||a.includes('panel system')||a.includes('hero')||a.includes('neighborhood')||a.includes('home')){
+        img.src=HERO;
+      }
+    });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',setHero);else setHero();
+  setTimeout(setHero,600);
+})();
+</script>
