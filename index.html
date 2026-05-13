@@ -643,5 +643,62 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
 <script>
 (()=>{const btns=document.querySelectorAll('.gal-btn');const cards=document.querySelectorAll('.gal-card');btns.forEach(b=>{b.addEventListener('click',()=>{btns.forEach(x=>x.classList.remove('gal-active'));b.classList.add('gal-active');const f=b.dataset.filter;cards.forEach(c=>{const show=f==='all'||c.dataset.cat===f;c.classList.toggle('gal-hide',!show)})})})})();
 </script>
+<!-- ====== TESTIMONIAL CAROUSEL ====== -->
+<section id="testimonials" style="padding:96px 24px;background:linear-gradient(135deg,#01696f 0%,#0a3d40 100%);color:#fff;position:relative;overflow:hidden">
+  <div style="max-width:1100px;margin:0 auto;position:relative;z-index:2">
+    <div style="text-align:center;margin-bottom:48px">
+      <span style="display:inline-block;padding:6px 14px;background:rgba(200,121,65,.2);color:#e8b894;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">What Builders Say</span>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:0 0 16px;font-weight:400;color:#fff">Trusted by the Industry</h2>
+    </div>
+    <div class="ts-carousel">
+      <div class="ts-track">
+        <div class="ts-slide ts-active">
+          <div class="ts-quote">“Theis Tekton cut our build time in half on a 40-unit affordable housing project. The panels arrived numbered, pre-cut, and our crew snapped them together like a kit. Zero callbacks on thermal performance — just happy tenants and lower utility bills.”</div>
+          <div class="ts-author"><div class="ts-avatar" style="background:#c87941">MR</div><div><div class="ts-name">Marcus Reyes</div><div class="ts-role">General Contractor — Reyes Building Group</div></div></div>
+        </div>
+        <div class="ts-slide">
+          <div class="ts-quote">“We specified Theis panels on a rehab campus where indoor air quality was non-negotiable. Zero-VOC, no off-gassing, and the envelope performance hit our energy targets without expensive HVAC oversizing. Our clinical team noticed the difference in week one.”</div>
+          <div class="ts-author"><div class="ts-avatar" style="background:#3d7a7f">SC</div><div><div class="ts-name">Dr. Sarah Chen</div><div class="ts-role">Project Architect — Wellness Group AIA</div></div></div>
+        </div>
+        <div class="ts-slide">
+          <div class="ts-quote">“After Hurricane Ida, we needed 60 family shelters built and occupied in under 45 days. Theis delivered. We're now the go-to disaster response partner in the Gulf because of what we did with these panels.”</div>
+          <div class="ts-author"><div class="ts-avatar" style="background:#8a4d2a">JT</div><div><div class="ts-name">James Tanaka</div><div class="ts-role">Director — Gulf Coast Recovery Partners</div></div></div>
+        </div>
+        <div class="ts-slide">
+          <div class="ts-quote">“As an investor, I look at ROI. Theis panels gave us 50% faster occupancy on a 200-unit workforce community — which means rent collection started months earlier. The math sells itself.”</div>
+          <div class="ts-author"><div class="ts-avatar" style="background:#c87941">LK</div><div><div class="ts-name">Lauren Kowalski</div><div class="ts-role">Managing Partner — Northbridge Development</div></div></div>
+        </div>
+      </div>
+      <div class="ts-controls">
+        <button class="ts-arrow" data-dir="-1" aria-label="Previous">←</button>
+        <div class="ts-dots"></div>
+        <button class="ts-arrow" data-dir="1" aria-label="Next">→</button>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,121,65,.15) 0%,transparent 70%);pointer-events:none"></div>
+  <div style="position:absolute;bottom:-100px;left:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(200,121,65,.1) 0%,transparent 70%);pointer-events:none"></div>
+</section>
+<style>
+.ts-carousel{position:relative;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:48px 56px 32px;backdrop-filter:blur(10px)}
+.ts-track{position:relative;min-height:240px}
+.ts-slide{position:absolute;inset:0;opacity:0;transform:translateX(40px);transition:all .6s cubic-bezier(.4,0,.2,1);pointer-events:none}
+.ts-slide.ts-active{opacity:1;transform:translateX(0);pointer-events:auto;position:relative}
+.ts-quote{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(1.15rem,2.2vw,1.55rem);line-height:1.5;color:#f0f0f0;margin-bottom:28px;font-style:italic;font-weight:400}
+.ts-author{display:flex;align-items:center;gap:14px}
+.ts-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:1rem;color:#fff;letter-spacing:.02em;font-family:'Work Sans',sans-serif;flex-shrink:0}
+.ts-name{font-weight:700;font-size:.98rem;color:#fff}
+.ts-role{font-size:.82rem;color:#b0d4d7;margin-top:2px}
+.ts-controls{display:flex;align-items:center;justify-content:center;gap:24px;margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,.08)}
+.ts-arrow{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(255,255,255,.2);background:transparent;color:#fff;font-size:1.1rem;cursor:pointer;transition:all .25s ease;display:flex;align-items:center;justify-content:center}
+.ts-arrow:hover{background:#c87941;border-color:#c87941;transform:scale(1.08)}
+.ts-dots{display:flex;gap:8px}
+.ts-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.25);border:none;cursor:pointer;transition:all .3s ease;padding:0}
+.ts-dot.ts-dot-active{background:#c87941;width:24px;border-radius:4px}
+@media(max-width:640px){.ts-carousel{padding:32px 24px 24px}}
+</style>
+<script>
+(()=>{const sec=document.getElementById('testimonials');if(!sec)return;const slides=sec.querySelectorAll('.ts-slide');const dotsWrap=sec.querySelector('.ts-dots');let cur=0;slides.forEach((_,i)=>{const d=document.createElement('button');d.className='ts-dot'+(i===0?' ts-dot-active':'');d.addEventListener('click',()=>go(i));dotsWrap.appendChild(d)});const dots=sec.querySelectorAll('.ts-dot');function go(i){cur=(i+slides.length)%slides.length;slides.forEach((s,k)=>s.classList.toggle('ts-active',k===cur));dots.forEach((d,k)=>d.classList.toggle('ts-dot-active',k===cur))}sec.querySelectorAll('.ts-arrow').forEach(b=>b.addEventListener('click',()=>go(cur+parseInt(b.dataset.dir))));let timer=setInterval(()=>go(cur+1),6000);sec.addEventListener('mouseenter',()=>clearInterval(timer));sec.addEventListener('mouseleave',()=>timer=setInterval(()=>go(cur+1),6000))})();
+</script>
 </body>
 </html>
