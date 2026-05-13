@@ -547,6 +547,10 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
     observer.observe(el);
   });
 })();
+// === Scroll Progress Bar ===
+(()=>{const bar=document.createElement('div');bar.id='scroll-progress';bar.style.cssText='position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#c87941,#01696f);z-index:9999;transition:width .1s ease-out;box-shadow:0 0 8px rgba(200,121,65,.6)';document.body.appendChild(bar);window.addEventListener('scroll',()=>{const h=document.documentElement;const p=(h.scrollTop/(h.scrollHeight-h.clientHeight))*100;bar.style.width=p+'%'},{passive:true})})();
+// === Animated Counters ===
+(()=>{const counters=document.querySelectorAll('.stat-num, .stat-value, [data-count]');if(!counters.length)return;const animate=(el)=>{const target=parseFloat(el.dataset.count||el.textContent.replace(/[^0-9.]/g,''));if(!target)return;const suffix=el.textContent.replace(/[0-9.,]/g,'');let cur=0;const step=target/60;const tick=()=>{cur+=step;if(cur>=target){el.textContent=target+suffix;return}el.textContent=Math.floor(cur)+suffix;requestAnimationFrame(tick)};tick()};const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target)}})},{threshold:0.5});counters.forEach(c=>io.observe(c))})();
 </script>
 </body>
 </html>
