@@ -1065,3 +1065,35 @@ footer{background:#0f0805 !important;color:#d4a574 !important;}
   setTimeout(fix,500);setTimeout(fix,1500);setTimeout(fix,3000);
 })();
 </script>
+<script>
+(()=>{
+  const MAP=[
+    {k:['modern construction panels','community built','weatherproof community','neighborhood'],u:'https://user-gen-media-assets.s3.amazonaws.com/gpt4o_images/c4e358b2-e106-445a-a2ab-1057ec4c6328.png'},
+    {k:['panel cross-section','cross-section','foam core','tekton panel cross'],u:'https://images.unsplash.com/photo-1597844808175-3c39df45dfa1?w=1200&q=85&auto=format&fit=crop'},
+    {k:['construction crew','assembl','job site','installing'],u:'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=85&auto=format&fit=crop'},
+    {k:['affordable housing'],u:'https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=900&q=85&auto=format&fit=crop'},
+    {k:['modular community','start-up community'],u:'https://images.unsplash.com/photo-1448630360428-65456885c650?w=900&q=85&auto=format&fit=crop'},
+    {k:['rehabilitation','treatment center'],u:'https://images.unsplash.com/photo-1586773860418-d37222d8fce3?w=900&q=85&auto=format&fit=crop'},
+    {k:['emergency relief','disaster'],u:'https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=900&q=85&auto=format&fit=crop'},
+    {k:['veterans'],u:'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=900&q=85&auto=format&fit=crop'},
+    {k:['commercial construction','commercial project'],u:'https://images.unsplash.com/photo-1590725140246-20acdee442be?w=900&q=85&auto=format&fit=crop'}
+  ];
+  function pick(alt){
+    alt=(alt||'').toLowerCase();
+    for(const m of MAP){for(const k of m.k){if(alt.includes(k))return m.u;}}
+    return null;
+  }
+  function fix(){
+    document.querySelectorAll('img').forEach(img=>{
+      if((img.alt||'').toLowerCase().includes('logo'))return;
+      const u=pick(img.alt);
+      if(u && img.src!==u){img.src=u;img.srcset='';}
+    });
+  }
+  // run after others
+  setTimeout(fix,200);setTimeout(fix,1000);setTimeout(fix,2500);setTimeout(fix,5000);
+  // also observe future src changes and revert
+  const mo=new MutationObserver(()=>fix());
+  document.addEventListener('DOMContentLoaded',()=>{mo.observe(document.body,{subtree:true,attributes:true,attributeFilter:['src']});fix();});
+})();
+</script>
