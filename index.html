@@ -1182,27 +1182,3 @@ footer{background:#0f0805 !important;color:#d4a574 !important;}
   document.addEventListener('DOMContentLoaded',fix);
 })();
 </script>
-<style>
-/* Home page fix: clean hero image, move content box below */
-.hero{min-height:100vh!important;height:100vh!important;}
-.hero .hero-content{display:none!important;}
-section.hero-intro{position:relative;background:var(--bg);padding:96px 28px 64px;}
-section.hero-intro .hero-content{position:relative;max-width:920px;margin:0 auto;z-index:2;}
-@media(max-width:780px){section.hero-intro{padding:64px 20px 48px;}}
-</style>
-<script>
-(function(){
-  function moveHeroContent(){
-    var hero=document.querySelector('section.hero');
-    if(!hero)return;
-    var content=hero.querySelector('.hero-content');
-    if(!content)return;
-    var intro=document.createElement('section');
-    intro.className='hero-intro';
-    intro.appendChild(content);
-    if(hero.nextSibling){hero.parentNode.insertBefore(intro,hero.nextSibling);}else{hero.parentNode.appendChild(intro);}
-    content.style.display='block';
-  }
-  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',moveHeroContent);}else{moveHeroContent();}
-})();
-</script>
