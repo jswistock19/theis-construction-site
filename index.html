@@ -833,5 +833,63 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
 <script>
 (()=>{const f=document.getElementById('lc-form');if(!f)return;f.addEventListener('submit',e=>{e.preventDefault();const data=Object.fromEntries(new FormData(f));if(!data.name||!data.email||!data.type){alert('Please complete name, email, and project type.');return}const btn=f.querySelector('.lc-submit');btn.disabled=true;btn.innerHTML='<span>Sending…</span>';setTimeout(()=>{document.getElementById('lc-success').classList.add('lc-show');f.reset();btn.disabled=false;btn.innerHTML='<span>Send My Estimate Request</span><span class="lc-arrow">→</span>';console.log('Lead captured:',data);setTimeout(()=>document.getElementById('lc-success').classList.remove('lc-show'),6000)},900)})})();
 </script>
+<!-- ====== INTERACTIVE PANEL LAYER EXPLORER ====== -->
+<section id="panel-explorer" style="padding:96px 24px;background:linear-gradient(180deg,#1a1a1a 0%,#0a0a0a 100%);color:#fff;position:relative;overflow:hidden">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:56px">
+      <span style="display:inline-block;padding:6px 14px;background:rgba(200,121,65,.15);color:#c87941;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">Panel Architecture</span>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:0 0 16px;font-weight:400">Explore the 6-Layer Tekton Panel</h2>
+      <p style="color:#a0a0a0;max-width:620px;margin:0 auto;font-size:1.05rem">Click any layer to inspect its purpose, material, and performance contribution.</p>
+    </div>
+    <div class="px-wrap">
+      <div class="px-stage">
+        <div class="px-panel">
+          <div class="px-layer" data-i="0" style="background:linear-gradient(135deg,#d4a574,#a87547)"><span>1</span></div>
+          <div class="px-layer" data-i="1" style="background:linear-gradient(135deg,#5e8c89,#3d6e6b)"><span>2</span></div>
+          <div class="px-layer" data-i="2" style="background:linear-gradient(135deg,#f5e6d3,#d4c4a8)"><span>3</span></div>
+          <div class="px-layer" data-i="3" style="background:linear-gradient(135deg,#c87941,#8a4d2a)"><span>4</span></div>
+          <div class="px-layer" data-i="4" style="background:linear-gradient(135deg,#5e8c89,#3d6e6b)"><span>5</span></div>
+          <div class="px-layer" data-i="5" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a)"><span>6</span></div>
+        </div>
+        <p class="px-hint">« Click a layer to explore</p>
+      </div>
+      <div class="px-detail" id="px-detail">
+        <div class="px-num">01</div>
+        <h3>Exterior Finish</h3>
+        <div class="px-spec">Stucco / Stone / Wood / Metal</div>
+        <p>Your choice of architectural finish bonded directly to the structural panel face. Infinite design flexibility — zero compromise on performance.</p>
+        <div class="px-stats">
+          <div class="px-stat"><div class="px-stat-num">∞</div><div class="px-stat-lbl">Finish Options</div></div>
+          <div class="px-stat"><div class="px-stat-num">100%</div><div class="px-stat-lbl">Weather Sealed</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="position:absolute;top:30%;right:-200px;width:500px;height:500px;background:radial-gradient(circle,rgba(200,121,65,.06) 0%,transparent 70%);pointer-events:none"></div>
+</section>
+<style>
+.px-wrap{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.px-stage{display:flex;flex-direction:column;align-items:center;gap:20px}
+.px-panel{display:flex;flex-direction:column;gap:6px;transform:perspective(1200px) rotateY(-18deg) rotateX(8deg);transition:transform .6s cubic-bezier(.4,0,.2,1);width:100%;max-width:340px}
+.px-panel:hover{transform:perspective(1200px) rotateY(-12deg) rotateX(4deg)}
+.px-layer{height:48px;border-radius:8px;cursor:pointer;display:flex;align-items:center;justify-content:flex-start;padding-left:20px;color:#fff;font-weight:800;font-size:1rem;font-family:'Work Sans',sans-serif;transition:all .35s cubic-bezier(.4,0,.2,1);position:relative;box-shadow:0 8px 24px rgba(0,0,0,.4);border:2px solid transparent}
+.px-layer span{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.3);font-size:.8rem;backdrop-filter:blur(6px)}
+.px-layer:hover{transform:translateX(8px);box-shadow:0 12px 32px rgba(200,121,65,.25)}
+.px-layer.px-active{transform:translateX(20px) scale(1.04);border-color:#c87941;box-shadow:0 16px 40px rgba(200,121,65,.5),0 0 0 4px rgba(200,121,65,.15)}
+.px-hint{color:#6a6a6a;font-size:.85rem;font-style:italic;margin:0}
+.px-detail{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:18px;padding:40px;min-height:360px;backdrop-filter:blur(10px)}
+.px-num{font-family:'Instrument Serif',Georgia,serif;font-size:4rem;color:#c87941;line-height:1;margin-bottom:12px;font-weight:400}
+.px-detail h3{font-family:'Instrument Serif',Georgia,serif;font-size:2rem;margin:0 0 8px;font-weight:400}
+.px-spec{display:inline-block;padding:5px 12px;background:rgba(200,121,65,.15);color:#e8b894;border-radius:20px;font-size:.78rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;margin-bottom:18px;font-family:'Work Sans',sans-serif}
+.px-detail p{color:#b0b0b0;line-height:1.65;margin:0 0 28px;font-size:1rem}
+.px-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.px-stat{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:16px;text-align:center}
+.px-stat-num{font-family:'Instrument Serif',Georgia,serif;color:#c87941;font-size:1.8rem;line-height:1;margin-bottom:6px}
+.px-stat-lbl{color:#9a9a9a;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;font-family:'Work Sans',sans-serif}
+@media(max-width:860px){.px-wrap{grid-template-columns:1fr;gap:40px}.px-panel{transform:none}.px-panel:hover{transform:none}.px-detail{padding:28px;min-height:auto}}
+</style>
+<script>
+(()=>{const sec=document.getElementById('panel-explorer');if(!sec)return;const data=[{n:'01',t:'Exterior Finish',s:'Stucco / Stone / Wood / Metal',d:'Your choice of architectural finish bonded directly to the structural panel face. Infinite design flexibility — zero compromise on performance.',a:'∞',al:'Finish Options',b:'100%',bl:'Weather Sealed'},{n:'02',t:'Weather Barrier',s:'Vapor-Permeable Membrane',d:'A high-performance air and moisture barrier that lets walls breathe while keeping bulk water out. Continuous, seamless protection at every joint.',a:'100%',al:'Air-Tight',b:'A+',bl:'Vapor Class'},{n:'03',t:'Outer Structural Skin',s:'Oriented Strand Board (OSB)',d:'Engineered structural sheathing that ties the panel together and transfers loads. Tested for racking, shear, and impact resistance.',a:'7/16"',al:'Skin Thickness',b:'3x',bl:'Stronger vs Stick'},{n:'04',t:'Tekton Foam Core',s:'Zero-VOC Closed-Cell Insulation',d:'The heart of the panel — a structural, zero-VOC closed-cell foam that delivers continuous insulation and bonds the entire assembly into a single rigid unit.',a:'R-28',al:'Per Panel',b:'0',bl:'VOC Emissions'},{n:'05',t:'Inner Structural Skin',s:'Oriented Strand Board (OSB)',d:'The interior face of the sandwich panel. Ready to accept drywall, paneling, or any standard finish with no additional framing.',a:'7/16"',al:'Skin Thickness',b:'Ready',bl:'For Finish'},{n:'06',t:'Interior Surface',s:'Drywall / Plaster / Wood',d:'Apply any standard interior finish directly. No additional studs, no thermal bridging, no off-gassing — a healthier wall from the inside out.',a:'Any',al:'Finish Type',b:'0',bl:'Off-Gassing'}];const layers=sec.querySelectorAll('.px-layer');const detail=document.getElementById('px-detail');function setLayer(i){layers.forEach((l,k)=>l.classList.toggle('px-active',k===i));const d=data[i];detail.innerHTML='<div class="px-num">'+d.n+'</div><h3>'+d.t+'</h3><div class="px-spec">'+d.s+'</div><p>'+d.d+'</p><div class="px-stats"><div class="px-stat"><div class="px-stat-num">'+d.a+'</div><div class="px-stat-lbl">'+d.al+'</div></div><div class="px-stat"><div class="px-stat-num">'+d.b+'</div><div class="px-stat-lbl">'+d.bl+'</div></div></div>'}layers.forEach(l=>l.addEventListener('click',()=>setLayer(parseInt(l.dataset.i))));setLayer(0)})();
+</script>
 </body>
 </html>
