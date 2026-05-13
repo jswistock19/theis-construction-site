@@ -589,5 +589,59 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
 <script>
 (()=>{const sec=document.getElementById('process');if(!sec)return;const fill=sec.querySelector('.tc-line-fill');const steps=sec.querySelectorAll('.tc-step');const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){const isMobile=window.innerWidth<=768;if(isMobile){fill.style.height='100%'}else{fill.style.width='100%'}steps.forEach((s,i)=>{setTimeout(()=>{s.classList.add('tc-show');s.classList.add('tc-active');if(i>0)setTimeout(()=>steps[i-1].classList.remove('tc-active'),600)},i*300)});io.unobserve(sec)}})},{threshold:.3});io.observe(sec)})();
 </script>
+<!-- ====== FILTERABLE PROJECT GALLERY ====== -->
+<section id="gallery" style="padding:96px 24px;background:#f7f6f2;color:#1a1a1a">
+  <div style="max-width:1300px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:48px">
+      <span style="display:inline-block;padding:6px 14px;background:rgba(200,121,65,.15);color:#c87941;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">Project Gallery</span>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:0 0 16px;font-weight:400;color:#1a1a1a">Built With Theis Panels</h2>
+      <p style="color:#5a5a5a;max-width:600px;margin:0 auto;font-size:1.05rem">Real projects across housing, disaster recovery, healthcare, and commercial sectors.</p>
+    </div>
+    <div class="gal-filters" role="tablist">
+      <button class="gal-btn gal-active" data-filter="all">All Projects</button>
+      <button class="gal-btn" data-filter="housing">Affordable Housing</button>
+      <button class="gal-btn" data-filter="disaster">Disaster Recovery</button>
+      <button class="gal-btn" data-filter="rehab">Rehab Centers</button>
+      <button class="gal-btn" data-filter="startup">Start-Up Communities</button>
+      <button class="gal-btn" data-filter="commercial">Commercial</button>
+    </div>
+    <div class="gal-grid">
+      <article class="gal-card" data-cat="housing"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Affordable Housing</span><h3>Modular Family Homes</h3><p>120 units delivered in 6 months — 50% under traditional schedule.</p></div></article>
+      <article class="gal-card" data-cat="disaster"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1582213782179-e0d53f98f2ca?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Disaster Recovery</span><h3>Hurricane Response Village</h3><p>Rapid-deployment shelters built and occupied within 30 days.</p></div></article>
+      <article class="gal-card" data-cat="rehab"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Rehab Center</span><h3>Wellness Recovery Campus</h3><p>40-bed facility with private rooms and zero-VOC interiors.</p></div></article>
+      <article class="gal-card" data-cat="startup"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Start-Up Community</span><h3>Innovation District Homes</h3><p>Workforce housing tied to a new tech employer campus.</p></div></article>
+      <article class="gal-card" data-cat="commercial"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Commercial</span><h3>Distribution Warehouse</h3><p>120,000 sq ft envelope built in 14 weeks, full thermal performance.</p></div></article>
+      <article class="gal-card" data-cat="housing"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1605276374104-dee2a0ed3cd6?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Affordable Housing</span><h3>Senior Living Community</h3><p>Single-level cottages designed for aging-in-place comfort.</p></div></article>
+      <article class="gal-card" data-cat="disaster"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1531835551805-16d864c8d311?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Disaster Recovery</span><h3>Wildfire Rebuild Project</h3><p>Permanent fire-resistant replacement homes for displaced families.</p></div></article>
+      <article class="gal-card" data-cat="commercial"><div class="gal-img" style="background-image:url('https://images.unsplash.com/photo-1582407947304-fd86f028f716?w=800&q=80')"></div><div class="gal-body"><span class="gal-tag">Commercial</span><h3>Mixed-Use Retail</h3><p>Ground-floor retail with three stories of residential above.</p></div></article>
+    </div>
+  </div>
+</section>
+<style>
+.gal-filters{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:40px}
+.gal-btn{padding:10px 20px;background:#fff;border:1.5px solid #d4d1ca;border-radius:30px;color:#5a5a5a;font-family:'Work Sans',sans-serif;font-size:.85rem;font-weight:600;cursor:pointer;transition:all .25s ease;letter-spacing:.02em}
+.gal-btn:hover{border-color:#c87941;color:#c87941;transform:translateY(-1px)}
+.gal-btn.gal-active{background:#1a1a1a;border-color:#1a1a1a;color:#fff;box-shadow:0 6px 20px rgba(0,0,0,.15)}
+.gal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
+.gal-card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 4px 18px rgba(0,0,0,.06);transition:all .4s cubic-bezier(.4,0,.2,1);cursor:pointer}
+.gal-card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(0,0,0,.12)}
+.gal-card.gal-hide{display:none}
+.gal-img{width:100%;aspect-ratio:4/3;background-size:cover;background-position:center;transition:transform .6s ease}
+.gal-card:hover .gal-img{transform:scale(1.05)}
+.gal-body{padding:20px 22px 24px}
+.gal-tag{display:inline-block;padding:4px 10px;background:rgba(200,121,65,.12);color:#c87941;border-radius:12px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.gal-body h3{font-family:'Instrument Serif',Georgia,serif;font-size:1.4rem;margin:0 0 8px;font-weight:400;color:#1a1a1a}
+.gal-body p{color:#6a6a6a;font-size:.92rem;line-height:1.55;margin:0}
+[data-theme="dark"] #gallery{background:#0f0f0f;color:#fff}
+[data-theme="dark"] #gallery h2{color:#fff}
+[data-theme="dark"] .gal-btn{background:#1a1a1a;border-color:#2a2a2a;color:#a0a0a0}
+[data-theme="dark"] .gal-btn.gal-active{background:#c87941;border-color:#c87941;color:#fff}
+[data-theme="dark"] .gal-card{background:#1a1a1a}
+[data-theme="dark"] .gal-body h3{color:#fff}
+[data-theme="dark"] .gal-body p{color:#a0a0a0}
+</style>
+<script>
+(()=>{const btns=document.querySelectorAll('.gal-btn');const cards=document.querySelectorAll('.gal-card');btns.forEach(b=>{b.addEventListener('click',()=>{btns.forEach(x=>x.classList.remove('gal-active'));b.classList.add('gal-active');const f=b.dataset.filter;cards.forEach(c=>{const show=f==='all'||c.dataset.cat===f;c.classList.toggle('gal-hide',!show)})})})})();
+</script>
 </body>
 </html>
