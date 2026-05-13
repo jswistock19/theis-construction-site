@@ -758,5 +758,80 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
 <script>
 (()=>{const sec=document.getElementById('roi');if(!sec)return;const sf=document.getElementById('roi-sf');const sfLbl=document.getElementById('roi-sf-label');const eEl=document.getElementById('roi-energy');const tEl=document.getElementById('roi-time');const totEl=document.getElementById('roi-total');const coEl=document.getElementById('roi-co2');const tabs=sec.querySelectorAll('.roi-tab');let mult=1;function fmt(n){return n.toLocaleString('en-US')}function calc(){const v=parseInt(sf.value);const min=parseInt(sf.min),max=parseInt(sf.max);const p=((v-min)/(max-min))*100;sf.style.setProperty('--p',p+'%');sfLbl.textContent=fmt(v);const energy=Math.round(v*0.85*mult);const time=Math.max(1,Math.round(v/4000*mult*10)/10);const total=Math.round((energy*10)+(v*8*mult));const co2=Math.round(v*0.024*mult*10)/10;eEl.textContent='$'+fmt(energy);tEl.textContent=time+' mo';totEl.textContent='$'+fmt(total);coEl.textContent=co2+' t'}sf.addEventListener('input',calc);tabs.forEach(t=>t.addEventListener('click',()=>{tabs.forEach(x=>x.classList.remove('roi-active'));t.classList.add('roi-active');mult=parseFloat(t.dataset.mult);calc()}));calc()})();
 </script>
+<!-- ====== LEAD CAPTURE / CONTACT FORM ====== -->
+<section id="contact" style="padding:96px 24px;background:#f7f6f2;color:#1a1a1a">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="lc-wrap">
+      <div class="lc-info">
+        <span style="display:inline-block;padding:6px 14px;background:rgba(200,121,65,.15);color:#c87941;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">Get Started</span>
+        <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2rem,4.5vw,3.2rem);line-height:1.1;margin:0 0 18px;font-weight:400">Get a Free Project Estimate</h2>
+        <p style="color:#5a5a5a;font-size:1.05rem;line-height:1.6;margin-bottom:32px">Tell us about your project and we'll send a custom panel layout, build timeline, and budget within 48 hours.</p>
+        <div class="lc-perks">
+          <div class="lc-perk"><div class="lc-check">✓</div><div><strong>Free site evaluation</strong><span>No commitment, no obligation</span></div></div>
+          <div class="lc-perk"><div class="lc-check">✓</div><div><strong>48-hour turnaround</strong><span>Custom estimate delivered fast</span></div></div>
+          <div class="lc-perk"><div class="lc-check">✓</div><div><strong>Engineered to your plans</strong><span>Panel layout sized to your design</span></div></div>
+        </div>
+      </div>
+      <form class="lc-form" id="lc-form" novalidate>
+        <div class="lc-row">
+          <div class="lc-field"><label>Full Name</label><input type="text" name="name" required placeholder="John Smith"/></div>
+          <div class="lc-field"><label>Company</label><input type="text" name="company" placeholder="Optional"/></div>
+        </div>
+        <div class="lc-row">
+          <div class="lc-field"><label>Email</label><input type="email" name="email" required placeholder="you@email.com"/></div>
+          <div class="lc-field"><label>Phone</label><input type="tel" name="phone" placeholder="(555) 123-4567"/></div>
+        </div>
+        <div class="lc-row">
+          <div class="lc-field"><label>Project Type</label><select name="type" required><option value="">Select one…</option><option>Affordable Housing</option><option>Disaster Recovery</option><option>Rehab Center</option><option>Start-Up Community</option><option>Commercial / Industrial</option><option>Single Family Home</option><option>Other</option></select></div>
+          <div class="lc-field"><label>Project Size (sq ft)</label><input type="number" name="sqft" placeholder="e.g. 5000" min="0"/></div>
+        </div>
+        <div class="lc-field"><label>Tell us about your project</label><textarea name="notes" rows="4" placeholder="Timeline, location, design goals, anything we should know…"></textarea></div>
+        <button type="submit" class="lc-submit"><span>Send My Estimate Request</span><span class="lc-arrow">→</span></button>
+        <p class="lc-fineprint">We respect your privacy. No spam, ever. Your info goes only to our project team.</p>
+        <div class="lc-success" id="lc-success">✓ Thanks! We'll be in touch within 48 hours.</div>
+      </form>
+    </div>
+  </div>
+</section>
+<style>
+.lc-wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:start}
+.lc-info h2{color:#1a1a1a}
+.lc-perks{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.lc-perk{display:flex;align-items:flex-start;gap:14px}
+.lc-check{width:30px;height:30px;border-radius:50%;background:#c87941;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;flex-shrink:0;font-size:.95rem;box-shadow:0 4px 12px rgba(200,121,65,.3)}
+.lc-perk strong{display:block;color:#1a1a1a;font-size:.98rem;margin-bottom:2px}
+.lc-perk span{display:block;color:#6a6a6a;font-size:.85rem}
+.lc-form{background:#fff;border-radius:18px;padding:36px;box-shadow:0 18px 50px rgba(0,0,0,.08);border:1px solid #ece9e1}
+.lc-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
+.lc-field{display:flex;flex-direction:column;margin-bottom:18px}
+.lc-row .lc-field{margin-bottom:0}
+.lc-field label{font-size:.78rem;font-weight:700;color:#3a3a3a;margin-bottom:8px;letter-spacing:.04em;text-transform:uppercase;font-family:'Work Sans',sans-serif}
+.lc-field input,.lc-field select,.lc-field textarea{padding:13px 14px;border:1.5px solid #e2ddd2;border-radius:10px;background:#faf9f5;font-size:.95rem;font-family:'Work Sans',sans-serif;color:#1a1a1a;transition:all .2s ease;width:100%;box-sizing:border-box;resize:vertical}
+.lc-field input:focus,.lc-field select:focus,.lc-field textarea:focus{outline:none;border-color:#c87941;background:#fff;box-shadow:0 0 0 4px rgba(200,121,65,.1)}
+.lc-submit{margin-top:6px;width:100%;padding:16px 24px;background:#1a1a1a;color:#fff;border:none;border-radius:10px;font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:12px;transition:all .25s ease;font-family:'Work Sans',sans-serif;letter-spacing:.02em}
+.lc-submit:hover{background:#c87941;transform:translateY(-2px);box-shadow:0 14px 32px rgba(200,121,65,.3)}
+.lc-submit .lc-arrow{transition:transform .25s ease}
+.lc-submit:hover .lc-arrow{transform:translateX(4px)}
+.lc-fineprint{font-size:.75rem;color:#8a8a8a;text-align:center;margin:14px 0 0}
+.lc-success{display:none;margin-top:18px;padding:14px 18px;background:rgba(1,105,111,.08);border:1.5px solid #01696f;border-radius:10px;color:#01696f;font-weight:700;text-align:center}
+.lc-success.lc-show{display:block;animation:lcPop .4s ease}
+@keyframes lcPop{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+[data-theme="dark"] #contact{background:#0a0a0a;color:#fff}
+[data-theme="dark"] .lc-info h2{color:#fff}
+[data-theme="dark"] .lc-info p{color:#a0a0a0}
+[data-theme="dark"] .lc-perk strong{color:#fff}
+[data-theme="dark"] .lc-perk span{color:#9a9a9a}
+[data-theme="dark"] .lc-form{background:#161616;border-color:#2a2a2a}
+[data-theme="dark"] .lc-field label{color:#c0c0c0}
+[data-theme="dark"] .lc-field input,[data-theme="dark"] .lc-field select,[data-theme="dark"] .lc-field textarea{background:#0e0e0e;border-color:#2a2a2a;color:#fff}
+[data-theme="dark"] .lc-field input:focus,[data-theme="dark"] .lc-field select:focus,[data-theme="dark"] .lc-field textarea:focus{background:#1a1a1a}
+[data-theme="dark"] .lc-submit{background:#c87941}
+[data-theme="dark"] .lc-submit:hover{background:#a85e2d}
+[data-theme="dark"] .lc-fineprint{color:#7a7a7a}
+@media(max-width:860px){.lc-wrap{grid-template-columns:1fr;gap:40px}.lc-row{grid-template-columns:1fr}.lc-form{padding:24px}}
+</style>
+<script>
+(()=>{const f=document.getElementById('lc-form');if(!f)return;f.addEventListener('submit',e=>{e.preventDefault();const data=Object.fromEntries(new FormData(f));if(!data.name||!data.email||!data.type){alert('Please complete name, email, and project type.');return}const btn=f.querySelector('.lc-submit');btn.disabled=true;btn.innerHTML='<span>Sending…</span>';setTimeout(()=>{document.getElementById('lc-success').classList.add('lc-show');f.reset();btn.disabled=false;btn.innerHTML='<span>Send My Estimate Request</span><span class="lc-arrow">→</span>';console.log('Lead captured:',data);setTimeout(()=>document.getElementById('lc-success').classList.remove('lc-show'),6000)},900)})})();
+</script>
 </body>
 </html>
