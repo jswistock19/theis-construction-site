@@ -552,5 +552,42 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
 // === Animated Counters ===
 (()=>{const counters=document.querySelectorAll('.stat-num, .stat-value, [data-count]');if(!counters.length)return;const animate=(el)=>{const target=parseFloat(el.dataset.count||el.textContent.replace(/[^0-9.]/g,''));if(!target)return;const suffix=el.textContent.replace(/[0-9.,]/g,'');let cur=0;const step=target/60;const tick=()=>{cur+=step;if(cur>=target){el.textContent=target+suffix;return}el.textContent=Math.floor(cur)+suffix;requestAnimationFrame(tick)};tick()};const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){animate(e.target);io.unobserve(e.target)}})},{threshold:0.5});counters.forEach(c=>io.observe(c))})();
 </script>
+<!-- ====== PROCESS TIMELINE SECTION ====== -->
+<section id="process" style="padding:96px 24px;background:linear-gradient(180deg,#0a0a0a 0%,#1a1a1a 100%);color:#fff;position:relative;overflow:hidden">
+  <div style="max-width:1200px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:64px">
+      <span style="display:inline-block;padding:6px 14px;background:rgba(200,121,65,.15);color:#c87941;border-radius:20px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px">From Vision to Build</span>
+      <h2 style="font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2rem,5vw,3.5rem);line-height:1.1;margin:0 0 16px;font-weight:400">Our 5-Step Process</h2>
+      <p style="color:#a0a0a0;max-width:600px;margin:0 auto;font-size:1.05rem">From the first consultation to final assembly — a streamlined journey that delivers in half the time of traditional construction.</p>
+    </div>
+    <div class="tc-timeline">
+      <div class="tc-line"><div class="tc-line-fill"></div></div>
+      <div class="tc-steps">
+        <div class="tc-step" data-step="1"><div class="tc-dot">1</div><h3>Consult</h3><p>Free site evaluation and project scoping with our engineering team.</p><span class="tc-time">Week 1</span></div>
+        <div class="tc-step" data-step="2"><div class="tc-dot">2</div><h3>Design</h3><p>Custom panel layouts engineered to your plans, climate, and code requirements.</p><span class="tc-time">Weeks 2-3</span></div>
+        <div class="tc-step" data-step="3"><div class="tc-dot">3</div><h3>Manufacture</h3><p>Pre-cut, pre-engineered Tekton panels produced in our controlled facility.</p><span class="tc-time">Weeks 4-6</span></div>
+        <div class="tc-step" data-step="4"><div class="tc-dot">4</div><h3>Ship</h3><p>Direct-to-site delivery, sequenced to match your build schedule.</p><span class="tc-time">Week 7</span></div>
+        <div class="tc-step" data-step="5"><div class="tc-dot">5</div><h3>Assemble</h3><p>Snap-and-lock installation 50% faster than conventional framing.</p><span class="tc-time">Weeks 8-10</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+.tc-timeline{position:relative;padding:40px 0}
+.tc-line{position:absolute;top:60px;left:5%;right:5%;height:3px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden}
+.tc-line-fill{height:100%;width:0;background:linear-gradient(90deg,#c87941,#01696f);transition:width 1.8s cubic-bezier(.4,0,.2,1);box-shadow:0 0 12px rgba(200,121,65,.6)}
+.tc-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:24px;position:relative;z-index:2}
+.tc-step{text-align:center;padding:0 8px;opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.tc-step.tc-show{opacity:1;transform:translateY(0)}
+.tc-step .tc-dot{width:44px;height:44px;border-radius:50%;background:#1a1a1a;border:3px solid rgba(255,255,255,.15);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.1rem;margin:0 auto 20px;transition:all .4s ease;font-family:'Work Sans',sans-serif}
+.tc-step.tc-active .tc-dot{background:#c87941;border-color:#c87941;box-shadow:0 0 0 6px rgba(200,121,65,.18),0 0 20px rgba(200,121,65,.5);transform:scale(1.1)}
+.tc-step h3{font-family:'Instrument Serif',Georgia,serif;font-size:1.4rem;margin:0 0 8px;font-weight:400}
+.tc-step p{color:#9a9a9a;font-size:.9rem;line-height:1.5;margin:0 0 12px}
+.tc-step .tc-time{display:inline-block;padding:3px 10px;background:rgba(200,121,65,.12);color:#c87941;border-radius:12px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+@media(max-width:768px){.tc-steps{grid-template-columns:1fr;gap:32px}.tc-line{left:30px;right:auto;top:0;bottom:0;width:3px;height:auto}.tc-line-fill{width:100%!important;height:0;transition:height 1.8s cubic-bezier(.4,0,.2,1)}.tc-step{text-align:left;padding-left:64px;position:relative}.tc-step .tc-dot{position:absolute;left:8px;top:0;margin:0}}
+</style>
+<script>
+(()=>{const sec=document.getElementById('process');if(!sec)return;const fill=sec.querySelector('.tc-line-fill');const steps=sec.querySelectorAll('.tc-step');const io=new IntersectionObserver((ents)=>{ents.forEach(e=>{if(e.isIntersecting){const isMobile=window.innerWidth<=768;if(isMobile){fill.style.height='100%'}else{fill.style.width='100%'}steps.forEach((s,i)=>{setTimeout(()=>{s.classList.add('tc-show');s.classList.add('tc-active');if(i>0)setTimeout(()=>steps[i-1].classList.remove('tc-active'),600)},i*300)});io.unobserve(sec)}})},{threshold:.3});io.observe(sec)})();
+</script>
 </body>
 </html>
