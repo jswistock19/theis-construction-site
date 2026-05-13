@@ -893,3 +893,35 @@ footer{background:var(--color-surface);border-top:1px solid var(--color-border);
 </script>
 </body>
 </html>
+<script>
+(()=>{
+  const NEIGHBORHOOD='https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=1600&q=80&auto=format&fit=crop';
+  const STARTUP='https://images.unsplash.com/photo-1448630360428-65456885c650?w=800&q=80&auto=format&fit=crop';
+  function applyHero(){
+    const hero=document.querySelector('.hero, .hero-section, section.hero, header.hero, [data-section="hero"]')||document.querySelector('section');
+    if(hero){
+      hero.style.backgroundImage=`linear-gradient(rgba(15,14,12,.55),rgba(15,14,12,.75)), url('${NEIGHBORHOOD}')`;
+      hero.style.backgroundSize='cover';
+      hero.style.backgroundPosition='center';
+      hero.style.backgroundRepeat='no-repeat';
+    }
+    const heroImg=document.querySelector('.hero-panel-img, .hero img, .hero-img');
+    if(heroImg && heroImg.tagName==='IMG'){heroImg.src=NEIGHBORHOOD;}
+    else if(heroImg){heroImg.style.backgroundImage=`url('${NEIGHBORHOOD}')`;heroImg.style.backgroundSize='cover';heroImg.style.backgroundPosition='center';}
+  }
+  function applyStartup(){
+    document.querySelectorAll('.gal-card, .gallery-card, [data-cat="startup"], [data-category="startup"]').forEach(c=>{
+      const t=(c.textContent||'').toLowerCase();
+      if(t.includes('innovation district')||t.includes('start-up')||t.includes('startup')){
+        const img=c.querySelector('img');
+        if(img){img.src=STARTUP;}
+        const bg=c.querySelector('.gal-img, .gallery-img');
+        if(bg){bg.style.backgroundImage=`url('${STARTUP}')`;bg.style.backgroundSize='cover';bg.style.backgroundPosition='center';}
+      }
+    });
+  }
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',()=>{applyHero();applyStartup();});}
+  else{applyHero();applyStartup();}
+  setTimeout(()=>{applyHero();applyStartup();},800);
+})();
+</script>
